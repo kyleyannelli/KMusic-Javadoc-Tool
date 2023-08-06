@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# build with docker, use CACHEBUST to force the git clone
+docker build --build-arg CACHEBUST=$(date +%s) -t kmusic-javadoc-tool .
+# run it
+docker run -d --restart always --name kmusic-javadoc-nginx -p 30103:80 kmusic-javadoc-tool
